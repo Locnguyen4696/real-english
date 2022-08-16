@@ -6,6 +6,7 @@ interface IText {
     bold?: boolean;
     small?: boolean;
     ellipsis?: boolean;
+    pointer?: boolean;
     textTransform?: "uppercase" | "lowercase" | "capitalize";
 }
 const getFontSize = ({ fontSize, small }: IText) => {
@@ -21,4 +22,5 @@ export const Text = styled.div<IText>`
     ${({ ellipsis }) =>
         ellipsis &&
         `white-space: nowrap; overflow: hidden; text-overflow: ellipsis`};
+    ${({ pointer }) => pointer && "cursor: pointer"};
 `;
