@@ -28,8 +28,7 @@ const Home: NextPage = ({ posts }: any) => {
       <Header></Header>
       <Container>
         <StyledBanner justifyContent="space-between">
-          {/* <Image src={BannerImg} alt="banner" /> */}
-          {jsxPosts}
+        {jsxPosts}
         </StyledBanner>
       </Container>
       <Footer></Footer>
