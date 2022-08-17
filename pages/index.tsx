@@ -1,11 +1,23 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import styled from "styled-components";
+import Flex from "../components/Box/Flex";
+import Container from "../components/Container";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Text } from "../components/Text";
-
-const Home: NextPage = () => {
+import BannerImg from "../assets/images/home/banner_1.png";
+import { getEvents, getPosts } from "../utils/wordpress";
+import Post from "../components/Post";
+const StyledBanner = styled(Flex)``;
+const BannerContent = styled(Flex)``;
+const Home: NextPage = ({ posts }: any) => {
+  console.log(posts);
+  const jsxPosts = posts.map((post: any) => {
+    const featuredMedia = post["_embedded"]["wp:featuredmedia"][0];
+    return <Post post={post} featuredMedia={featuredMedia} key={post.id} />;
+  });
   return (
     <div>
       <Head>
@@ -14,10 +26,26 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header></Header>
-      <div>Hello</div>
+      <Container>
+        <StyledBanner justifyContent="space-between">
+          {/* <Image src={BannerImg} alt="banner" /> */}
+          {jsxPosts}
+        </StyledBanner>
+      </Container>
       <Footer></Footer>
     </div>
   );
 };
 
 export default Home;
+export async function getStaticProps({ params }: any) {
+  const posts = await getPosts();
+  const events = await getEvents();
+  return {
+    props: {
+      posts,
+      events,
+    },
+    revalidate: 10, // In seconds
+  };
+}
