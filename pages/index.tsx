@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import styled from "styled-components";
 import Flex from "../components/Box/Flex";
 import Container from "../components/Container";
@@ -8,16 +8,73 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { Text } from "../components/Text";
 import BannerImg from "../assets/images/home/banner_1.png";
+import Stats1 from "../assets/images/home/stats_1.png";
+import Stats2 from "../assets/images/home/stats_2.png";
+import Stats3 from "../assets/images/home/stats_3.png";
+import Circle1 from "../assets/images/home/circle_1.png";
+import Circle2 from "../assets/images/home/circle_2.png";
+import Circle3 from "../assets/images/home/circle_3.png";
 import { getEvents, getPosts } from "../utils/wordpress";
 import Post from "../components/Post";
-const StyledBanner = styled(Flex)``;
-const BannerContent = styled(Flex)``;
+import colors from "../constants/colors";
+import Button from "../components/Button";
+
+interface IBanner {
+  img?: string | StaticImageData;
+}
+
+const StyledBanner = styled.div<IBanner>`
+  //@ts-ignore
+  background: url(${BannerImg.src}) no-repeat right center,
+    url(${Circle3.src}) no-repeat left bottom,
+    url(${Circle2.src}) no-repeat 60% 20%,
+    url(${Circle1.src}) no-repeat 95% 90%;
+
+  width: 100%;
+  height: 100vh;
+`;
+const BannerContent = styled(Container)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  & > div {
+    width: 50%;
+  }
+  & > button {
+    margin: 54px 0;
+  }
+`;
+const Heading = styled.div`
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 80px;
+  color: ${colors.text};
+  margin-bottom: 54px;
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    width: 65%;
+    height: 90px;
+    border: 3px solid #f4a242;
+    border-radius: 50%;
+    position: absolute;
+    top: -10px;
+    right: 15%;
+    z-index: -1;
+  }
+`;
+const Stats = styled(Flex)`
+  width: 70% !important;
+`;
 const Home: NextPage = ({ posts }: any) => {
-  console.log(posts);
-  const jsxPosts = posts.map((post: any) => {
-    const featuredMedia = post["_embedded"]["wp:featuredmedia"][0];
-    return <Post post={post} featuredMedia={featuredMedia} key={post.id} />;
-  });
+  // console.log(posts);
+  // const jsxPosts = posts.map((post: any) => {
+  //   const featuredMedia = post["_embedded"]["wp:featuredmedia"][0];
+  //   return <Post post={post} featuredMedia={featuredMedia} key={post.id} />;
+  // });
   return (
     <div>
       <Head>
@@ -26,11 +83,59 @@ const Home: NextPage = ({ posts }: any) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header></Header>
-      <Container>
-        <StyledBanner justifyContent="space-between">
-        {jsxPosts}
-        </StyledBanner>
-      </Container>
+
+      <StyledBanner>
+        <BannerContent>
+          <Heading>
+            The Real IELTS <br />
+            IELTS Đích thực
+          </Heading>
+          <Text color={colors.regular}>
+            The Real IELTS ra đời với mục đích xóa tan nỗi sợ tiếng Anh của
+            người Việt. Chương trình học IELTS đầu tiên áp dụng từ độ tuổi 12
+            vận dụng các phương pháp học kết hợp tâm lý học và công nghệ vào
+            việc tiếp thu kiến thức.
+          </Text>
+          <Text color={colors.sub} fontSize="20px" bold>
+            Học thật - Thi thật - Chứng chỉ thật
+          </Text>
+          <Button variant="primary">
+            <Text color={colors.tertiary} bold>
+              Đăng ký
+            </Text>
+          </Button>
+          <Stats justifyContent="space-between">
+            <Flex flexDirection="column">
+              <Text fontSize="20px" bold color={colors.sub}>
+                20+
+              </Text>
+              <Flex>
+                <Image src={Stats1} alt="Giáo viên tài năng" />
+                <Text color={colors.disable}>Giáo viên tài năng</Text>
+              </Flex>
+            </Flex>
+            <Flex flexDirection="column">
+              <Text fontSize="20px" bold color={colors.sub}>
+                2000+
+              </Text>
+              <Flex>
+                <Image src={Stats2} alt="Học viên đang theo học" />
+                <Text color={colors.disable}>Học viên đang theo học</Text>
+              </Flex>
+            </Flex>
+            <Flex flexDirection="column">
+              <Text fontSize="20px" bold color={colors.sub}>
+                1000+
+              </Text>
+              <Flex>
+                <Image src={Stats3} alt="Học viên cán đích" />
+                <Text color={colors.disable}>Học viên cán đích</Text>
+              </Flex>
+            </Flex>
+          </Stats>
+        </BannerContent>
+      </StyledBanner>
+
       <Footer></Footer>
     </div>
   );

@@ -37,11 +37,11 @@ export default function Footer() {
     <Wrapper>
       <Column gap="24px" flexDirection="column">
         <FooterHeading withLogo>VỀ The Real IELTS</FooterHeading>
-        <Text color={colors.primary}>
+        <Text color={colors.regular}>
           The Real IELTS - Hệ thống luyện thi IELTS hàng đầu cho thanh thiếu
           niên Việt Nam.
         </Text>
-        <Text color={colors.primary}>
+        <Text color={colors.regular}>
           Tại The Real IELTS, với phương châm Học thật - Thi thật - Điểm thật,
           chúng tôi cam kết sát cánh cùng học viên tới khi đạt được mục tiêu
           trình độ và điểm số đã đề ra.
@@ -95,12 +95,12 @@ export default function Footer() {
       </Column>
       <Column gap="24px" flexDirection="column">
         <FooterHeading> </FooterHeading>
-        <Text color={colors.primary}>Hotline: (+84) 384.161.694</Text>
-        <Text color={colors.primary}>
+        <Text color={colors.regular}>Hotline: (+84) 384.161.694</Text>
+        <Text color={colors.regular}>
           Tầng 2, Tòa Servin Office, Nam Đô Complex, 609 Trương Định, Hoàng Mai,
           Hà Nội
         </Text>
-        <Text color={colors.primary}>
+        <Text color={colors.regular}>
           Trung tâm The Real IELTS - Giấy phép đăng ký kinh doanh số:
         </Text>
       </Column>
