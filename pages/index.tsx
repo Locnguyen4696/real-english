@@ -14,6 +14,7 @@ import Stats3 from "../assets/images/home/stats_3.png";
 import Circle1 from "../assets/images/home/circle_1.png";
 import Circle2 from "../assets/images/home/circle_2.png";
 import Circle3 from "../assets/images/home/circle_3.png";
+import IconCall from "../assets/icons/call-calling.png";
 import { getEvents, getPosts } from "../utils/wordpress";
 import Post from "../components/Post";
 import colors from "../constants/colors";
@@ -27,8 +28,7 @@ const StyledBanner = styled.div<IBanner>`
   //@ts-ignore
   background: url(${BannerImg.src}) no-repeat right center,
     url(${Circle3.src}) no-repeat left bottom,
-    url(${Circle2.src}) no-repeat 60% 20%,
-    url(${Circle1.src}) no-repeat 95% 90%;
+    url(${Circle2.src}) no-repeat 60% 20%, url(${Circle1.src}) no-repeat 95% 90%;
 
   width: 100%;
   height: 100vh;
@@ -68,6 +68,13 @@ const Heading = styled.div`
 `;
 const Stats = styled(Flex)`
   width: 70% !important;
+`;
+const CourseList = styled(Flex)`
+  width: 100%;
+  overflow-x: scroll;
+`;
+const CourseItem = styled(Flex)`
+  width: 200px;
 `;
 const Home: NextPage = ({ posts }: any) => {
   // console.log(posts);
@@ -135,7 +142,32 @@ const Home: NextPage = ({ posts }: any) => {
           </Stats>
         </BannerContent>
       </StyledBanner>
-
+      <Container flexDirection="column">
+        <Text
+          color={colors.text}
+          fontSize="48px"
+          style={{
+            marginBottom: "48px",
+          }}
+        >
+          Khoá học
+        </Text>
+        <CourseList>
+          <CourseItem>alo123</CourseItem>
+          <CourseItem>alo123</CourseItem> <CourseItem>alo123</CourseItem>{" "}
+          <CourseItem>alo123</CourseItem> <CourseItem>alo123</CourseItem>{" "}
+          <CourseItem>alo123</CourseItem>
+          <CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem>
+        </CourseList>
+        <Button
+          variant="secondary"
+          startIcon={<Image src={IconCall} alt="Call" />}
+        >
+          <Text color={colors.tertiary} bold>
+            Đăng ký nhận tư vấn ngay
+          </Text>
+        </Button>
+      </Container>
       <Footer></Footer>
     </div>
   );

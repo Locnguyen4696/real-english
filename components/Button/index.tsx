@@ -15,6 +15,7 @@ const StyledButton = styled.button<IButton>`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
   min-width: 240px;
   padding: 16px 20px;
   width: fit-content;

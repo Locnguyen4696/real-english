@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import breakpoints from "../../constants/breakpoints";
+import Flex from "../Box/Flex";
 
 interface IContainer {
   children: React.ReactNode;
 }
-const Container = styled.div`
+const Container = styled(Flex)`
     width: 100%;
     margin: 0 auto;
     @media ${breakpoints.xs}{
