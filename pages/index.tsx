@@ -868,14 +868,14 @@ const Home: NextPage = ({ posts }: any) => {
 };
 
 export default Home;
-export async function getStaticProps({ params }: any) {
-  const posts = await getPosts();
-  const events = await getEvents();
-  return {
-    props: {
-      posts,
-      events,
-    },
-    revalidate: 10, // In seconds
-  };
-}
+// export async function getStaticProps({ params }: any) {
+//   const posts = await getPosts();
+//   const events = await getEvents();
+//   return {
+//     props: {
+//       posts,
+//       events,
+//     },
+//     revalidate: 10, // In seconds
+//   };
+// }

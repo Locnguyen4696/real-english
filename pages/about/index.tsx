@@ -5,6 +5,17 @@ import Container from "../../components/Container";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import { Text } from "../../components/Text";
+import Banner from "../../assets/images/about/banner.png";
+import styled from "styled-components";
+import colors from "../../constants/colors";
+import Flex from "../../components/Box/Flex";
+import Button from "../../components/Button";
+
+const StyledBanner = styled.div`
+  height: 80vh;
+  background: url(${Banner.src}) no-repeat center center;
+  background-size: 100vw;
+`;
 
 const About: NextPage = () => {
   return (
@@ -15,7 +26,53 @@ const About: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header></Header>
-      <Container>About</Container>
+      <StyledBanner></StyledBanner>
+      <Container flexDirection="column">
+        <Text
+          bold
+          color={colors.h1}
+          fontSize="48px"
+          style={{
+            margin: "48px 0",
+          }}
+        >
+          The Real IELTS - Hệ thống luyện thi IELTS <br /> hàng đầu cho thanh
+          thiếu niên Việt Nam
+        </Text>
+        <Text
+          fontSize="20px"
+          color={colors.sub}
+          style={{
+            marginBottom: "48px",
+          }}
+        >
+          Thông qua hoạt động đào tạo và kết nối cộng đồng, The Real IELTS đồng
+          hành trên hành trình tìm động lực chinh phục chứng chỉ IELTS và phát
+          triển bản thân của hàng nghìn học viên. The Real IELTS tạo nên niềm
+          yêu thích tiếng Anh, giúp việc học trở thành niềm đam mê thông qua
+          việc vận dụng các phương pháp học kết hợp tâm lý học và công nghệ vào
+          việc tiếp thu kiến thức.
+        </Text>
+        <Text
+          fontSize="20px"
+          color={colors.sub}
+          style={{
+            marginBottom: "64px",
+          }}
+        >
+          Được đánh giá là đơn vị đào tạo luyện thi IELTS uy tín, hệ thống The
+          Real IELTS được thành lập bởi đội ngũ giáo viên có năng lực, chuyên
+          môn tốt và kinh nghiệm thực tiễn trong lĩnh vực luyện thi IELTS.
+        </Text>
+        <Flex justifyContent="center" gap="24px">
+          <Button variant="secondary">
+            <Text color={colors.tertiary}>Khoá học</Text>
+          </Button>
+          <Button variant="tertiary">
+            <Text color={colors.secondary}>Đăng ký học thử</Text>
+          </Button>
+        </Flex>
+      </Container>
       <Footer></Footer>
     </div>
   );
