@@ -8,11 +8,12 @@ interface IText {
     ellipsis?: boolean;
     pointer?: boolean;
     textTransform?: "uppercase" | "lowercase" | "capitalize";
+    center?: boolean;
 }
 const getFontSize = ({ fontSize, small }: IText) => {
     return small ? "14px" : fontSize || "16px";
 };
-export const Text = styled.div<IText>`
+export const Text = styled.p<IText>`
     ${({ color }) => color && `color: ${color}`};
     font-size: ${getFontSize};
     font-weight: ${({ bold }) => (bold ? "600" : "400")};
@@ -23,4 +24,5 @@ export const Text = styled.div<IText>`
         ellipsis &&
         `white-space: nowrap; overflow: hidden; text-overflow: ellipsis`};
     ${({ pointer }) => pointer && "cursor: pointer"};
+    ${({ center }) => center && "text-align: center"};
 `;

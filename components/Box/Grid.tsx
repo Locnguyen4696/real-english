@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface IGridProps {
-    columns?: number;
-    rows?: number;
+    columns?: string;
+    rows?: string;
     gap?: string;
 
 }
