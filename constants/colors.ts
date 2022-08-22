@@ -1,4 +1,5 @@
 const colors = {
+  h1: "#202020",
   regular: "#636363",
   active: "#F16721",
   text: "#202020",

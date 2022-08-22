@@ -9,6 +9,7 @@ interface IButton {
   variant: "primary" | "secondary" | "tertiary";
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 const StyledButton = styled.button<IButton>`
@@ -33,9 +34,10 @@ export default function Button({
   variant = "primary",
   startIcon,
   endIcon,
+  style
 }: IButton) {
   return (
-    <StyledButton disabled={disabled} onClick={onClick} variant={variant}>
+    <StyledButton disabled={disabled} onClick={onClick} variant={variant} style={style}>
       {startIcon}
       {children}
       {endIcon}

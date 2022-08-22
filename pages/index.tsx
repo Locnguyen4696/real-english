@@ -15,15 +15,20 @@ import Circle1 from "../assets/images/home/circle_1.png";
 import Circle2 from "../assets/images/home/circle_2.png";
 import Circle3 from "../assets/images/home/circle_3.png";
 import IconCall from "../assets/icons/call-calling.png";
+import IconGetFile from "../assets/icons/get-file.png";
+import IconArrowRight from "../assets/icons/arrow-right.png";
 import { getEvents, getPosts } from "../utils/wordpress";
 import Post from "../components/Post";
 import colors from "../constants/colors";
 import Button from "../components/Button";
 
+import Slider from "react-slick";
 interface IBanner {
   img?: string | StaticImageData;
 }
-
+interface ICourseItem {
+  active?: boolean;
+}
 const StyledBanner = styled.div<IBanner>`
   //@ts-ignore
   background: url(${BannerImg.src}) no-repeat right center,
@@ -69,12 +74,16 @@ const Heading = styled.div`
 const Stats = styled(Flex)`
   width: 70% !important;
 `;
-const CourseList = styled(Flex)`
-  width: 100%;
-  overflow-x: scroll;
+const CourseList = styled.div`
+  margin-bottom: 64px;
 `;
-const CourseItem = styled(Flex)`
-  width: 200px;
+const CourseItem = styled(Flex)<ICourseItem>`
+  width: 240px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #fff;
+  border: ${(props) => (props.active ? "1px solid #f4a242" : "1px solid #fff")};
+  // flex-shrink: 0;
 `;
 const Home: NextPage = ({ posts }: any) => {
   // console.log(posts);
@@ -142,32 +151,156 @@ const Home: NextPage = ({ posts }: any) => {
           </Stats>
         </BannerContent>
       </StyledBanner>
-      <Container flexDirection="column">
-        <Text
-          color={colors.text}
-          fontSize="48px"
+      <div
+        style={{
+          background: "#F7F7F8",
+          padding: "64px 0",
+        }}
+      >
+        <Container flexDirection="column">
+          <Text
+            color={colors.text}
+            fontSize="48px"
+            style={{
+              marginBottom: "48px",
+            }}
+          >
+            Khoá học
+          </Text>
+          <CourseList>
+            <Slider slidesToScroll={3} slidesToShow={3} infinite={false}>
+              <div>
+                <CourseItem
+                  active
+                  flexDirection="column"
+                  alignItems="center"
+                  gap="16px"
+                >
+                  <Text bold color={colors.active}>
+                    IELTS Starlight
+                  </Text>
+                  <Text color={colors.text}>IELTS 0 - 7.5+ cho học sinh</Text>
+                </CourseItem>
+              </div>
+              <div>
+                <CourseItem
+                  flexDirection="column"
+                  alignItems="center"
+                  gap="16px"
+                >
+                  <Text bold color={colors.text}>
+                    Advance Package
+                  </Text>
+                  <Text color={colors.text}>Combo 0-7.5+</Text>
+                </CourseItem>
+              </div>
+              <div>
+                <CourseItem
+                  flexDirection="column"
+                  alignItems="center"
+                  gap="16px"
+                >
+                  <Text bold color={colors.text}>
+                    Modest Package
+                  </Text>
+                  <Text color={colors.text}>Combo 0-5.0+</Text>
+                </CourseItem>
+              </div>
+              <div>
+                <CourseItem
+                  flexDirection="column"
+                  alignItems="center"
+                  gap="16px"
+                >
+                  <Text bold color={colors.text}>
+                    Fluent Package
+                  </Text>
+                  <Text color={colors.text}>Combo 0-6.5+</Text>
+                </CourseItem>
+              </div>
+              <div>
+                <CourseItem
+                  flexDirection="column"
+                  alignItems="center"
+                  gap="16px"
+                >
+                  <Text bold color={colors.text}>
+                    Private Package
+                  </Text>
+                  <Text color={colors.text}>Gia sư 1-1</Text>
+                </CourseItem>
+              </div>
+            </Slider>
+          </CourseList>
+          <Button
+            variant="secondary"
+            startIcon={<Image src={IconCall} alt="Call" />}
+            style={{
+              margin: "0 auto",
+              marginBottom: "120px",
+            }}
+          >
+            <Text color={colors.tertiary} bold>
+              Đăng ký nhận tư vấn ngay
+            </Text>
+          </Button>
+        </Container>
+        <Container
+          gap="92px"
+          alignItems="center"
           style={{
-            marginBottom: "48px",
+            marginBottom: "64px",
           }}
         >
-          Khoá học
-        </Text>
-        <CourseList>
-          <CourseItem>alo123</CourseItem>
-          <CourseItem>alo123</CourseItem> <CourseItem>alo123</CourseItem>{" "}
-          <CourseItem>alo123</CourseItem> <CourseItem>alo123</CourseItem>{" "}
-          <CourseItem>alo123</CourseItem>
-          <CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem><CourseItem>alo123</CourseItem>
-        </CourseList>
-        <Button
-          variant="secondary"
-          startIcon={<Image src={IconCall} alt="Call" />}
+          <div
+            style={{
+              width: "750px",
+              height: "420px",
+              background: "#D9D9D9",
+            }}
+          ></div>
+          <Flex flexDirection="column" gap="48px">
+            <Text bold fontSize="48px" color={colors.h1}>
+              Phương pháp đào tạo{" "}
+              <span style={{ color: colors.active }}>LCLT</span>
+            </Text>
+            <Flex flexDirection="column" gap="16px">
+              <Text bold fontSize="20px" color={colors.sub}>
+                Learner Centered
+              </Text>
+              <Text color={colors.regular}>Lấy người học làm trọng tâm</Text>
+            </Flex>
+            <Flex flexDirection="column" gap="16px">
+              <Text bold fontSize="20px" color={colors.sub}>
+                Linguistic Thinking
+              </Text>
+              <Text color={colors.regular}>Xây dựng tư duy Ngôn ngữ</Text>
+            </Flex>
+          </Flex>
+        </Container>
+        <Container
+          justifyContent="center"
+          gap="24px"
+          style={{ marginBottom: "120px" }}
         >
-          <Text color={colors.tertiary} bold>
-            Đăng ký nhận tư vấn ngay
-          </Text>
-        </Button>
-      </Container>
+          <Button
+            variant="secondary"
+            endIcon={<Image src={IconGetFile} alt="Call" />}
+          >
+            <Text color={colors.tertiary} bold>
+              File phương pháp học
+            </Text>
+          </Button>
+          <Button
+            variant="tertiary"
+            endIcon={<Image src={IconArrowRight} alt="Call" />}
+          >
+            <Text color={colors.secondary} bold>
+              Tìm hiểu thêm
+            </Text>
+          </Button>
+        </Container>
+      </div>
       <Footer></Footer>
     </div>
   );
