@@ -43,8 +43,8 @@ export default function Header() {
         <Image src={Logo} alt="logo" />
         <Nav gap="32px">
           <Link href="/">Trang chủ</Link>
-          <Link href="about">Giới thiệu</Link>
-          <Link href="#">Khoá học</Link>
+          <Link href="/about">Giới thiệu</Link>
+          <Link href="/courses">Khoá học</Link>
           <Link href="#">Ôn luyện Ielts</Link>
           <Link href="#">Tin tức</Link>
           <Link href="#">Liên hệ</Link>
