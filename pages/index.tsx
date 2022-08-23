@@ -746,33 +746,7 @@ const Home: NextPage = ({ posts }: any) => {
             Tham gia cộng đồng T.R.I
           </Text>
         </Button>
-        <Text
-          color={colors.h1}
-          center
-          fontSize="44px"
-          bold
-          style={{
-            marginBottom: "64px",
-          }}
-        >
-          Đối tác
-        </Text>
-        <Container
-          justifyContent="space-between"
-          style={{
-            marginBottom: "120px",
-          }}
-        >
-          <div>
-            <Image src={Partner1} alt="" />
-          </div>
-          <div>
-            <Image src={Partner2} alt="" />
-          </div>
-          <div>
-            <Image src={Partner3} alt="" />
-          </div>
-        </Container>
+
         <Text
           color={colors.h1}
           center
@@ -821,7 +795,12 @@ const Home: NextPage = ({ posts }: any) => {
               flex: "1",
             }}
           ></div>
-          <Flex flexDirection="column" alignItems="center" justifyContent="center" gap="48px">
+          <Flex
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            gap="48px"
+          >
             <Text
               bold
               fontSize="24px"
