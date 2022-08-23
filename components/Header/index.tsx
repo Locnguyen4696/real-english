@@ -1,11 +1,11 @@
-import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 import Logo from "../../assets/images/logo.png";
-import Image from "next/image";
-import Container from "../Container";
-import Flex from "../Box/Flex";
-import Link from "next/link";
 import colors from "../../constants/colors";
+import Flex from "../Box/Flex";
+import Container from "../Container";
 const StyledHeader = styled.div`
   position: fixed;
   top: 0;
@@ -21,7 +21,9 @@ const Wrapper = styled(Container)`
   justify-content: center;
   gap: 64px;
   color: ${colors.text};
-
+  .active {
+    color: ${colors.active};
+  }
   a {
     text-decoration: none;
     color: inherit;
@@ -34,21 +36,33 @@ const Wrapper = styled(Container)`
   }
 `;
 
-const Nav = styled(Flex)``;
-
 export default function Header() {
+  const router = useRouter();
+
   return (
     <StyledHeader>
       <Wrapper>
         <Image src={Logo} alt="logo" />
-        <Nav gap="32px">
-          <Link href="/">Trang chủ</Link>
-          <Link href="/about">Giới thiệu</Link>
-          <Link href="/courses">Khoá học</Link>
-          <Link href="#">Ôn luyện Ielts</Link>
-          <Link href="#">Tin tức</Link>
-          <Link href="#">Liên hệ</Link>
-        </Nav>
+        <Flex gap="32px">
+          <div className={router.pathname === "/" ? "active" : ""}>
+            <Link href="/">Trang chủ</Link>
+          </div>
+          <div className={router.pathname.includes("about") ? "active" : ""}>
+            <Link href="/about">Giới thiệu</Link>
+          </div>
+          <div className={router.pathname.includes("courses") ? "active" : ""}>
+            <Link href="/courses">Khoá học</Link>
+          </div>
+          <div className={router.pathname === "/132" ? "active" : ""}>
+            <Link href="#">Ôn luyện Ielts</Link>
+          </div>
+          <div className={router.pathname === "/123" ? "active" : ""}>
+            <Link href="#">Tin tức</Link>
+          </div>
+          <div className={router.pathname === "/123" ? "active" : ""}>
+            <Link href="#">Liên hệ</Link>
+          </div>
+        </Flex>
       </Wrapper>
     </StyledHeader>
   );

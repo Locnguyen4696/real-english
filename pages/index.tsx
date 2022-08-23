@@ -35,7 +35,6 @@ interface ICourseItem {
   active?: boolean;
 }
 const StyledBanner = styled.div<IBanner>`
-  //@ts-ignore
   background: url(${BannerImg.src}) no-repeat right center,
     url(${Circle3.src}) no-repeat left bottom,
     url(${Circle2.src}) no-repeat 60% 20%, url(${Circle1.src}) no-repeat 95% 90%;
