@@ -5,6 +5,10 @@ import { text } from "stream/consumers";
 import styled from "styled-components";
 import Banner from "../../../assets/images/courses/banner_1.png";
 import Banner2 from "../../../assets/images/courses/banner_2.png";
+import Banner3 from "../../../assets/images/courses/banner_3.png";
+import Banner4 from "../../../assets/images/courses/banner_4.png";
+import Banner5 from "../../../assets/images/courses/banner_5.png";
+
 import Blob1 from "../../../assets/images/courses/blob_1.png";
 import Courses1 from "../../../assets/images/courses/courses_1.png";
 import ListIcon from "../../../assets/icons/list-icon-2.png";
@@ -39,9 +43,8 @@ const StyledListItem = styled.div`
   &:before {
     content: "";
     position: absolute;
-    top: 50%;
+    top: 4px;
     left: 0;
-    transform: translateY(-50%);
     width: 16px;
     height: 16px;
     background: url(${ListIcon.src}) no-repeat left top;
@@ -185,6 +188,106 @@ const IeltsStarlight: NextPage = () => {
               Tiếp xúc tài liệu nước ngoài nhờ IELTS
             </Text>
           </StyledListItem>
+        </Flex>
+      </Container>
+      <Container flexDirection="column">
+        <Text center bold color={colors.h1} fontSize="48px">
+          CHƯƠNG TRÌNH IELTS STARLIGHT THIẾT KẾ DÀNH RIÊNG CHO HỌC SINH TỪ 12
+          TUỔI
+        </Text>
+        <Flex>
+          <Image src={Banner3} alt="IELTS Starlight"></Image>
+        </Flex>
+        <div
+          style={{
+            width: "100%",
+            height: "500px",
+            background: "#D9D9D9",
+            marginBottom: "64px",
+          }}
+        ></div>
+        <Flex
+          justifyContent="center"
+          gap="24px"
+          style={{
+            marginBottom: "90px",
+          }}
+        >
+          <Button variant="tertiary">
+            <Text color={colors.secondary}>Nhận tư vấn</Text>
+          </Button>
+          <Button variant="secondary">
+            <Text color={colors.tertiary}>Nhận tư vấn</Text>
+          </Button>
+        </Flex>
+        <Text
+          bold
+          color={colors.h1}
+          fontSize="48px"
+          style={{
+            marginBottom: "60px",
+          }}
+        >
+          Lộ trình học
+        </Text>
+        <Flex
+          style={{
+            marginBottom: "120px",
+          }}
+        >
+          <Image src={Banner4} alt="IELTS Starlight"></Image>
+        </Flex>
+
+        <Flex>
+          <Flex flexDirection="column" style={{
+            maxWidth: "50%",
+          }}>
+            <Text
+              bold
+              color={colors.h1}
+              fontSize="48px"
+              style={{
+                marginBottom: "60px",
+              }}
+            >
+              THE REAL IELTS có gì?
+            </Text>
+            <StyledListItem>
+              <Text color={colors.regular}>
+                Mô hình lớp học 5in1: Cộng đồng TRI - Cố vấn học tập - Giáo viên
+                8.0 - Trợ giảng 7.0 - Tester
+              </Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>
+                Quy mô lớp học nhỏ 8-10 học viên - cá nhân hóa từng học viên
+              </Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>
+                Tối ưu về thời gian: Với 120 phút phần đào tạo kỹ năng và luyện
+                tập với tỉ lệ 1-1.
+              </Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>
+                Dạy thật chất, điểm cao ngất với lượng kiến thức cô đọng gấp 2
+                lần thông thường
+              </Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>Phương pháp LCLT ưu việt</Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>Lộ trình độc quyền, tinh gọn</Text>
+            </StyledListItem>
+            <StyledListItem>
+              <Text color={colors.regular}>Cộng đồng 1 triệu thành viên</Text>
+            </StyledListItem>
+          </Flex>
+          <Flex justifyContent="flex-end">
+            <Image src={Banner5} alt="IELTS Starlight"></Image>
+          </Flex>
         </Flex>
       </Container>
     </>

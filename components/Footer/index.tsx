@@ -15,6 +15,7 @@ interface IFooterProps {
 const Wrapper = styled(Container)`
   display: flex;
   justify-content: space-between;
+  padding: 32px 0;
 `;
 const StyledFlex = styled(Flex)`
   height: 80px;
