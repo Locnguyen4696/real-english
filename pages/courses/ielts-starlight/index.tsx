@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { text } from "stream/consumers";
 import styled from "styled-components";
 import Banner from "../../../assets/images/courses/banner_1.png";
@@ -8,15 +8,28 @@ import Banner2 from "../../../assets/images/courses/banner_2.png";
 import Banner3 from "../../../assets/images/courses/banner_3.png";
 import Banner4 from "../../../assets/images/courses/banner_4.png";
 import Banner5 from "../../../assets/images/courses/banner_5.png";
-
+import Banner6 from "../../../assets/images/courses/banner_6.png";
 import Blob1 from "../../../assets/images/courses/blob_1.png";
 import Courses1 from "../../../assets/images/courses/courses_1.png";
+import Quote from "../../../assets/images/home/quote.png";
+import Teacher1 from "../../../assets/images/home/teacher_1.png";
 import ListIcon from "../../../assets/icons/list-icon-2.png";
+import IconGetFile from "../../../assets/icons/get-file.png";
+import IconPlus from "../../../assets/icons/icon-plus.png";
+import IconMinus from "../../../assets/icons/icon-minus.png";
 import Flex from "../../../components/Box/Flex";
 import Button from "../../../components/Button";
 import Container from "../../../components/Container";
 import { Text } from "../../../components/Text";
 import colors from "../../../constants/colors";
+import Grid from "../../../components/Box/Grid";
+import Slider from "react-slick";
+
+interface IAccordion {
+  title: string;
+  content: string;
+}
+
 const StyledBanner = styled.div`
   background: url(${Banner2.src}) no-repeat 55% 35%,
     url(${Banner.src}) no-repeat 75% center,
@@ -50,7 +63,101 @@ const StyledListItem = styled.div`
     background: url(${ListIcon.src}) no-repeat left top;
   }
 `;
+const StyledInput = styled.input`
+  width: 100%;
+  padding: 16px 0;
+  border: none;
+  color: #ced3e0;
+  border-bottom: 1px solid #ced3e0;
+`;
+const StyledItemTitle = styled.div`
+  position: relative;
+`;
+const StyledContent = styled.div`
+  max-height: 0;
+  overflow: hidden;
+  transition: 0.3s ease-out;
+`;
+const Accordion = ({ title, content }: IAccordion) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  return (
+    <div
+      style={{
+        borderBottom: "1px solid #CED3E0",
+      }}
+    >
+      <StyledItemTitle>
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: 0,
+            transform: "translateY(-50%)",
+          }}
+        >
+          <Image
+            src={isOpen ? IconMinus : IconPlus}
+            alt={isOpen ? "Open" : "Close"}
+          />
+        </div>
+        <Text
+          color={colors.sub}
+          bold
+          fontSize="20px"
+          style={{
+            padding: "16px 0",
+          }}
+          onClick={() => setIsOpen(!isOpen)}
+          pointer
+        >
+          {title}
+        </Text>
+      </StyledItemTitle>
+      <StyledContent
+        style={{
+          maxHeight: isOpen ? "fit-content" : "0",
+          padding: isOpen ? "16px 0" : "0",
+        }}
+      >
+        {content}
+      </StyledContent>
+    </div>
+  );
+};
 const IeltsStarlight: NextPage = () => {
+  const AccordionData = [
+    {
+      title: "Bao nhiêu tuổi thì có thể bắt đầu học IELTS?",
+      content:
+        "Chương trình IELTS Starlight cho phép học sinh từ 12 tuổi có thể học IELTS sớm với cam kết đạt đầu ra bằng văn bản.",
+    },
+    {
+      title: "Có ngoại khóa hay chương trình ngoài giờ không?",
+      content:
+        "Với mục tiêu đảm bảo 100% học viên đạt đầu ra, The Real IELTS có chương trình gia sư 1-1 với trợ giảng IELTS 7.0 cho học viên yếu. 100% học viên được tham gia MIỄN PHÍ các workshop, event do Cộng đồng The Real IELTS tổ chức.",
+    },
+    {
+      title: "Mất gốc ko biết gì có học được không?",
+      content:
+        "Chương trình học tại The Real IELTS thiết kế toàn bộ lộ trình từ 0-7.5+, hỗ trợ học cùng gia sư để đạt cam kết",
+    },
+    {
+      title: "Có cam kết đầu ra không?",
+      content:
+        "The Real IELTS cam kết đầu ra bằng văn bản, hợp đồng rõ ràng đầy đủ ngay từ khi bắt đầu đăng ký. Quyền lợi cam kết đầu ra, không đạt học lại miễn phí và nhận bổ trợ liên tục đến khi đạt mục tiêu cam kết.",
+    },
+    {
+      title: "Có giáo viên nước ngoài không?",
+      content:
+        "Giáo viên nước ngoài tham gia vào quá trình giảng dạy kỹ năng nghe - nói của học viên và kiểm định chất lượng đầu ra học viên",
+    },
+    {
+      title: "Khóa học online hay offline?",
+      content: "The Real IELTS có hình thức học online và offline cho học viên",
+    },
+  ];
+
   return (
     <>
       <StyledBanner>
@@ -128,6 +235,7 @@ const IeltsStarlight: NextPage = () => {
           </Button>
         </Container>
       </StyledBanner>
+
       <Container
         style={{
           marginBottom: "120px",
@@ -239,9 +347,12 @@ const IeltsStarlight: NextPage = () => {
         </Flex>
 
         <Flex>
-          <Flex flexDirection="column" style={{
-            maxWidth: "50%",
-          }}>
+          <Flex
+            flexDirection="column"
+            style={{
+              maxWidth: "50%",
+            }}
+          >
             <Text
               bold
               color={colors.h1}
@@ -289,6 +400,880 @@ const IeltsStarlight: NextPage = () => {
             <Image src={Banner5} alt="IELTS Starlight"></Image>
           </Flex>
         </Flex>
+      </Container>
+      <Container flexDirection="column">
+        <Text center bold color={colors.h1} fontSize="48px">
+          Cam kết học viên
+        </Text>
+        <Flex>
+          <Image src={Banner6} alt="IELTS Starlight"></Image>
+        </Flex>
+      </Container>
+      <Container
+        flexDirection="column"
+        style={{
+          marginBottom: "195px",
+        }}
+      >
+        <Flex gap="30px">
+          <Image src={Teacher1} alt="Image 1" />
+          <Flex
+            flexDirection="column"
+            justifyContent="center"
+            gap="48px"
+            style={{
+              width: "60%",
+            }}
+          >
+            <div>
+              <Image src={Quote} alt="Quote" />
+            </div>
+            <Text color={colors.regular}>
+              Với phương châm Học thật - Thi thật - Điểm thật, chúng tôi cam kết
+              sát cánh cùng học viên tới khi đạt được mục tiêu trình độ và điểm
+              số đã đề ra.
+            </Text>
+            <Text bold fontSize="20px" color={colors.sub}>
+              Phan Quynh Giang - Founder The Real Ielts
+            </Text>
+          </Flex>
+        </Flex>
+      </Container>
+      <Text color={colors.h1} fontSize="48px" bold center>
+        Giảng viên
+      </Text>
+      <Container
+        flexDirection="column"
+        style={{
+          marginBottom: "64px",
+        }}
+      >
+        <div>
+          <Slider>
+            <div>
+              <Grid columns="3" gap="30px">
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </div>
+            <div>
+              <Grid columns="3" gap="30px">
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </div>
+            <div>
+              <Grid columns="3" gap="30px">
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </div>
+            <div>
+              <Grid columns="3" gap="30px">
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </div>
+            <div>
+              <Grid columns="3" gap="30px">
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex flexDirection="column">
+                  <div
+                    style={{
+                      background: "#d9d9d9",
+                      width: "100%",
+                      height: "350px",
+                    }}
+                  ></div>
+                  <Flex
+                    flexDirection="column"
+                    gap="16px"
+                    style={{
+                      padding: "16px",
+                    }}
+                  >
+                    <Text bold fontSize="20px" color={colors.sub}>
+                      Vũ Thị Thảo Uyên
+                    </Text>
+                    <Text color={colors.regular}>
+                      IELTS 8.0 Overall <br />
+                      Kinh nghiệm 4 năm giảng dạy
+                    </Text>
+                  </Flex>
+                </Flex>
+              </Grid>
+            </div>
+          </Slider>
+        </div>
+      </Container>
+      <Button
+        variant="secondary"
+        endIcon={<Image src={IconGetFile} alt="Download" />}
+        style={{
+          margin: "0 auto",
+          marginBottom: "120px",
+        }}
+      >
+        <Text color={colors.tertiary} bold>
+          PDF Catalogue
+        </Text>
+      </Button>
+      <Container>
+        <Text color={colors.h1} fontSize="48px" bold>
+          REAL IELTS &quot;STAR&quot;
+        </Text>
+      </Container>
+      <Container gap="90px">
+        <div
+          style={{
+            background: "#D9D9D9",
+            height: "500px",
+            flex: "1",
+          }}
+        ></div>
+        <Flex
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          gap="48px"
+        >
+          <Text
+            bold
+            fontSize="24px"
+            textTransform="uppercase"
+            color={colors.h1}
+            center
+          >
+            ĐĂNG KÝ TƯ VẤN VÀ NHẬN QUÀ
+          </Text>
+          <StyledInput
+            type="text"
+            id="Name"
+            name="Name"
+            placeholder="Họ và tên"
+          />
+          <StyledInput
+            type="tel"
+            id="Tel"
+            name="Tel"
+            placeholder="Số điện thoại"
+          />
+          <StyledInput
+            type="email"
+            id="Email"
+            name="Email"
+            placeholder="Email"
+          />
+          <Button
+            variant="secondary"
+            style={{
+              margin: "0 auto",
+            }}
+          >
+            <Text color={colors.tertiary} bold>
+              Đăng ký
+            </Text>
+          </Button>
+        </Flex>
+      </Container>
+      <Container flexDirection="column">
+        <Text color={colors.h1} fontSize="48px" bold>
+          Các câu hỏi thường gặp
+        </Text>
+        {AccordionData.map((item, i) => (
+          <Accordion
+            key={i}
+            title={item.title}
+            content={item.content}
+          ></Accordion>
+        ))}
       </Container>
     </>
   );

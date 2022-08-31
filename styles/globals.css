@@ -127,3 +127,6 @@ table {
   font-family: "Inter";
   src: url("/assets/fonts/Inter.ttf") format("truetype");
 }
+div{
+  box-sizing: border-box;
+}
