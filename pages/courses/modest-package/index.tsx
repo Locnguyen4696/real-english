@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { text } from "stream/consumers";
+
 import styled from "styled-components";
 import Banner from "../../../assets/images/courses/banner_1.png";
 import Banner2 from "../../../assets/images/courses/banner_2.png";
@@ -145,7 +145,7 @@ const IeltsStarlight: NextPage = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              IELTS STARLIGHT
+              Modest Package
             </Text>
           </StyledTitle>
           <Text
@@ -156,7 +156,7 @@ const IeltsStarlight: NextPage = () => {
               marginBottom: "48px",
             }}
           >
-            Bước chuẩn bị để tỏa sáng
+            Phổ cập IELTS cho người Việt
           </Text>
           <Text
             fontSize="20px"
@@ -166,9 +166,28 @@ const IeltsStarlight: NextPage = () => {
               marginBottom: "48px",
             }}
           >
-            Chương trình Tiếng Anh học thuật đầu tiên cho độ tuổi từ 12 giúp con
-            phát triển tư duy ngôn ngữ, cầm chắc chứng chỉ IELTS, tự tin thực
-            hiện giấc mơ trường quốc tế, trường chuyên và du học.{" "}
+            Chương trình thiết kế cho người Việt từ 0 đến 5.0 IELTS, xóa bỏ sự
+            sợ hãi với việc học một ngôn ngữ mới, giúp tự tin học viên tự tin
+            hơn trong cuộc sống.
+          </Text>
+          <Text color={colors.sub} fontSize="20px">
+            Đầu vào:{" "}
+            <span
+              style={{
+                color: colors.active,
+              }}
+            >
+              0
+            </span>
+            <br />
+            Đầu ra:{" "}
+            <span
+              style={{
+                color: colors.active,
+              }}
+            >
+              5.0 IELTS
+            </span>
           </Text>
           <Button variant="primary">
             <Text color={colors.tertiary} bold fontSize="24px">
@@ -343,14 +362,7 @@ const IeltsStarlight: NextPage = () => {
           </Flex>
         </Flex>
       </Container>
-      <Container flexDirection="column">
-        <Text center bold color={colors.h1} fontSize="48px">
-          Cam kết học viên
-        </Text>
-        <Flex>
-          <Image src={Banner6} alt="IELTS Starlight"></Image>
-        </Flex>
-      </Container>
+
       <Container
         flexDirection="column"
         style={{
@@ -379,6 +391,14 @@ const IeltsStarlight: NextPage = () => {
               Phan Quynh Giang - Founder The Real Ielts
             </Text>
           </Flex>
+        </Flex>
+      </Container>
+      <Container flexDirection="column">
+        <Text center bold color={colors.h1} fontSize="48px">
+          Cam kết học viên
+        </Text>
+        <Flex>
+          <Image src={Banner6} alt="IELTS Starlight"></Image>
         </Flex>
       </Container>
       <Text color={colors.h1} fontSize="48px" bold center>
@@ -1147,11 +1167,7 @@ const IeltsStarlight: NextPage = () => {
           PDF Catalogue
         </Text>
       </Button>
-      <Container>
-        <Text color={colors.h1} fontSize="48px" bold>
-          REAL IELTS &quot;STAR&quot;
-        </Text>
-      </Container>
+
       <Container
         gap="90px"
         style={{

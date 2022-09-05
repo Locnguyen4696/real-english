@@ -23,10 +23,14 @@ const Wrapper = styled(Container)`
   color: ${colors.text};
   .active {
     color: ${colors.active};
+    a{
+      color: ${colors.active};
+    }
   }
   a {
+    font-weight: 600;
     text-decoration: none;
-    color: inherit;
+    color: #909090;
     transition: 0.2s ease-in-out;
     &:hover,
     &:active {
@@ -53,14 +57,17 @@ export default function Header() {
           <div className={router.pathname.includes("courses") ? "active" : ""}>
             <Link href="/courses">Khoá học</Link>
           </div>
-          <div className={router.pathname === "/132" ? "active" : ""}>
-            <Link href="#">Ôn luyện Ielts</Link>
+          <div className={router.pathname.includes("training") ? "active" : ""}>
+            <Link href="/training">Ôn luyện Ielts</Link>
           </div>
-          <div className={router.pathname === "/123" ? "active" : ""}>
-            <Link href="#">Tin tức</Link>
+          <div className={router.pathname.includes("news") ? "active" : ""}>
+            <Link href="/news">Tin tức</Link>
           </div>
-          <div className={router.pathname === "/123" ? "active" : ""}>
-            <Link href="#">Liên hệ</Link>
+          <div className={router.pathname.includes("test") ? "active" : ""}>
+            <Link href="/test">Thi thử Ielts</Link>
+          </div>
+          <div className={router.pathname.includes("contact") ? "active" : ""}>
+            <Link href="/contact">Liên hệ</Link>
           </div>
         </Flex>
       </Wrapper>
