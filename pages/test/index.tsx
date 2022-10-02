@@ -57,7 +57,7 @@ const Test: NextPage = () => {
               marginBottom: "48px",
             }}
           >
-            Đăng ký thi thử Ielts miễn phí
+            Đăng ký thi thử IELTS miễn phí
           </Text>
           <Flex
             flexDirection="column"

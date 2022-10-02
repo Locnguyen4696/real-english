@@ -388,7 +388,7 @@ const IeltsStarlight: NextPage = () => {
               số đã đề ra.
             </Text>
             <Text bold fontSize="20px" color={colors.sub}>
-              Phan Quynh Giang - Founder The Real Ielts
+              Phan Quynh Giang - Founder The Real IELTS
             </Text>
           </Flex>
         </Flex>
