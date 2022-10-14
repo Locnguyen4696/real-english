@@ -35,13 +35,15 @@ interface ICourseItem {
     active?: boolean;
 }
 const StyledBanner = styled.div<IBanner>`
+    margin-top: 120px;
+    padding: 100px 0;
     background: url(${BannerImg.src}) no-repeat right center,
         url(${Circle3.src}) no-repeat left bottom,
         url(${Circle2.src}) no-repeat 60% 20%,
         url(${Circle1.src}) no-repeat 95% 90%;
 
     width: 100%;
-    height: 100vh;
+    // height: 100vh;
 `;
 const BannerContent = styled(Container)`
     display: flex;
@@ -70,7 +72,7 @@ const Heading = styled.div`
         display: block;
         width: 65%;
         height: 90px;
-        border: 3px solid #f4a242;
+        border: 3px solid #26336D;
         border-radius: 50%;
         position: absolute;
         top: -10px;
@@ -91,8 +93,8 @@ const CourseItem = styled(Flex)<ICourseItem>`
     border-radius: 16px;
     background: #fff;
     border: ${(props) =>
-        props.active ? "1px solid #f4a242" : "1px solid #fff"};
-    box-shadow: -5px -5px 10px 0px rgba(241, 103, 33, 1);
+        props.active ? "1px solid #26336D" : "1px solid #fff"};
+    box-shadow: -5px -5px 10px 0px rgba(38, 51, 109, 1);
     // flex-shrink: 0;
 `;
 const NewsItem = styled(Flex)`

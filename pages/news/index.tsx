@@ -13,7 +13,7 @@ const Nav = styled(Flex)`
   min-width: 250px;
   .active {
     color: #fff;
-    background: #f16721;
+    background: #26336D;
   }
 `;
 
@@ -25,7 +25,7 @@ const NavItem = styled.div`
   border-radius: 8px;
   &:hover {
     color: #fff;
-    background: #f16721;
+    background: #26336D;
   }
 `;
 const Content = styled(Grid)``;
