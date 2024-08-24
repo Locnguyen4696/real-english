@@ -5,9 +5,7 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
-  images: {
-    domains: ['therealielts.vn'],
-  }
+ 
 }
 
 module.exports = nextConfig
